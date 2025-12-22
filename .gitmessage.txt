@@ -1,0 +1,5 @@
+feat: short summary
+
+Detailed explanation
+
+BREAKING CHANGE: if applicable

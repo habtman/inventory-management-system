@@ -1,0 +1,29 @@
+# fly.toml app configuration file generated for inventory-production-full on 2025-12-22T13:01:30+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'inventory-production-full'
+primary_region = 'fra'
+
+[build]
+  dockerfile = "Dockerfile.prod"
+
+[http_service]
+  internal_port = 4000
+  force_https = true
+
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    interval = "10s"
+    timeout = "2s"
+    method = "GET"
+    path = "/health"
+
+[[vm]]
+  cpu_kind = 'shared'
+  cpus = 1
+  memory = '1gb'
