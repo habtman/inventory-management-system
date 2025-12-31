@@ -1,9 +1,13 @@
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
-function signAccessToken(payload) {
+function signAccessToken(user) {
   return jwt.sign(
-    payload,
+    {
+      id: user.id,
+      role: user.role,
+      email: user.email
+    },
     process.env.JWT_SECRET,
     { expiresIn: '15m' }
   );

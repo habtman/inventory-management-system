@@ -15,7 +15,8 @@ services:
     ports:
       - "5001:4000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/inventory
       JWT_SECRET: super-secret-access-key
